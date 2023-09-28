@@ -1,0 +1,29 @@
+.pago{
+    display: flex;
+    flex-wrap: wrap;
+}
+.primer-boton {
+    line-height: 50px; 
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    display: inline-block;
+    width: 150px;
+    background-color: #ea3a6c;
+    color: #fff;
+    text-decoration: none;
+  }
+  .primer-boton:hover {
+    background-color: #FAD242;
+    color: white;
+  }
+  .total-box {
+    width: 300px; /* Ancho del cuadro */
+    height: 50px; /* Alto del cuadro */
+    background-color: #E8B0A3; /* Color de fondo */
+    color: white; /* Color del texto */
+    align-items: left;
+    text-align: center; /* Alineación del texto */
+    line-height: 50px; /* Altura de línea para centrar verticalmente el texto */
+    font-size: 18px; /* Tamaño de fuente del texto */
+    border-radius: 5px; /* Bordes redondeados */
+}
