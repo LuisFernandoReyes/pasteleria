@@ -27,3 +27,19 @@
     font-size: 18px;
     border-radius: 5px; 
 }
+/* Agrega estos estilos CSS a tu archivo de hojas de estilo */
+/* Estilo para la lista horizontal de tarjetas */
+ul.list-horizontal {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Mostrar elementos en línea */
+  flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan a la siguiente línea */
+  justify-content: space-between; /* Espaciado uniforme entre las tarjetas */
+}
+
+/* Estilo para cada tarjeta de pastel */
+li.list-item {
+  flex: 0 0 calc(33.33% - 10px); /* Establece el ancho de cada tarjeta */
+  margin-bottom: 20px; /* Espacio entre las tarjetas */
+  margin-right: 10px; /* Espacio a la derecha de cada tarjeta */
+}

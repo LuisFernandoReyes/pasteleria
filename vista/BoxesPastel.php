@@ -30,6 +30,7 @@ class BoxesPastel {
             echo "Error en la consulta: " . $conexion->errorInfo()[2];
         }
     }
+    
     //Lenar el html que se mostrara en index
     public function generateCardHtml() {
         $html = '<div class="card" style="width: 18rem;">';
@@ -45,10 +46,37 @@ class BoxesPastel {
         $html .= '</div>';
         return $html;
     }
+
 }
 
-$idPastel = 1; // ID del pastel
-$boxesPastel = new BoxesPastel($idPastel);
-$cardHtml = $boxesPastel->generateCardHtml();
-echo $cardHtml;
+// Método estático para obtener todas las idPastel
+function getRegistros() {
+    global $conexion;
+    $idRegistros = array();
+    $sql = "SELECT idPastel FROM pastel";
+    $result = $conexion->query($sql);
+    if ($result) {
+        if ($result->rowCount() > 0) {
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                $idRegistros[] = $row['idPastel'];
+            }
+        } else {
+            echo "No se encontraron registros en la tabla 'pastel'.";
+        }
+    } else {
+        echo "Error en la consulta: " . $conexion->errorInfo()[2];
+    }
+
+    return $idRegistros;
+}
+
+// Obtener todas las idPastel
+$idsPasteles = getRegistros();
+
+// Iterar sobre las idPastel y generar los cards
+foreach ($idsPasteles as $idPastel) {
+    $boxesPastel = new BoxesPastel($idPastel);
+    $cardHtml = $boxesPastel->generateCardHtml();
+    echo $cardHtml;
+}
 ?>
