@@ -24,31 +24,7 @@
     <br>
   <div>
     <?php
-    include("./vista/boxes.php");
-    include("./bd/bd.php");
-
-    $sql = "SELECT idPastel, tipoSabor, precioPastel FROM pastel"; // Selecciona más columnas si es necesario
-
-    $result = $conexion->query($sql);
-    
-    // Verifica si la consulta fue exitosa
-    if ($result) {
-        // Verifica si hay al menos un registro
-        if ($result->rowCount() > 0) {
-            // Itera a través de los resultados y muestra los datos
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-                echo "ID del pastel: " . $row["idPastel"] . "<br>";
-                echo "Sabor del pastel: " . $row["tipoSabor"] . "<br>";
-                echo "Precio del pastel: " . $row["precioPastel"] . "<br>";
-                echo "<hr>"; // Separador entre registros, opcional
-            }
-        } else {
-            echo "No se encontraron registros en la tabla 'pastel'.";
-        }
-    } else {
-        echo "Hubo un error en la consulta: " . $conexion->errorInfo()[2];
-    }
-
+    include("./vista/BoxesPastel.php");
     ?>
   </div>
   </footer>
