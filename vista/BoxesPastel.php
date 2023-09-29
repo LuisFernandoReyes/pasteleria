@@ -37,15 +37,19 @@ class BoxesPastel {
         $html .= '<img src="./img/'. $this->imagen . '" class="card-img-top">';
         $html .= '<div class="card-body">';
         $html .= '<h5 class="card-title">Pastel de ' . $this->tipoSabor . ' de tamaño ' . $this->tamañoPastel . '</h5>';
-        $html .= '<p class="card-text">' . $this->descripcion . '</p>'; // Corregido el error de sintaxis aquí
+        $html .= '<p class="card-text">' . $this->descripcion . '</p>';
         $html .= '<div class="input-group mb-3">';
-        $html .= '<a href="#" class="btn btn-primary">Agregar al carrito</a>';
+        $html .= '<form action="./vista/compra.php" method="POST">';
+        $html .= '<input type="hidden" name="idPastel" value="' . $this->idPastel . '">';
+        $html .= '<input type="submit" value="Agregar al carrito">';
+        $html .= '</form>';
         $html .= '<span class="input-group-text">Precio: $' . $this->precioPastel . '</span>';
         $html .= '</div>';
         $html .= '</div>';
         $html .= '</div>';
         return $html;
     }
+    
 
 }
 
