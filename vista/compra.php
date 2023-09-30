@@ -8,8 +8,6 @@ $tamañoPastel = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['idPastel'])) {
         $idPastel = $_POST['idPastel'];
-
-        // Llamar a la función compra para obtener los datos del pastel
         compra($idPastel);
     }
     if (isset($_POST['idPastel'])) {
@@ -30,7 +28,7 @@ function insertar($idPastel) {
         $resultadoExistencia = $stmtExistencia->fetch(PDO::FETCH_ASSOC);
 
         if ($resultadoExistencia) {
-            // El pastel ya está en el carrito, por lo que actualizamos la cantidad
+            // Siexiste pastel, actualizamos la cantidad
             $cantidadActual = $resultadoExistencia['cantidadPastel'];
             $cantidadNueva = $cantidadActual + 1;
 
@@ -39,12 +37,12 @@ function insertar($idPastel) {
             $stmtActualizar->bindParam(':cantidadNueva', $cantidadNueva);
             $stmtActualizar->bindParam(':idPastel', $idPastel);
             if ($stmtActualizar->execute()) {
-                echo "Se actualizó la cantidad del pastel en el carrito.";
+                // echo "Se actualizó la cantidad del pastel en el carrito.";
             } else {
                 echo "Error al actualizar la cantidad del pastel en el carrito.";
             }
         } else {
-            // El pastel no está en el carrito, por lo que lo insertamos con cantidad 1
+            // Si no esta el pastel, insertarlo con cantidad de 1
             $sqlInsertar = "INSERT INTO carrito (idPastel, cantidadPastel) VALUES (:idPastel, 1)";
             $stmtInsertar = $conexion->prepare($sqlInsertar);
             $stmtInsertar->bindParam(':idPastel', $idPastel);

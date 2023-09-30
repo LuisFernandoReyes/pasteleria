@@ -9,7 +9,7 @@ class BoxesPastel {
     private $imagen;
     private $descripcion;
 
-    // Funcion que solicita los pasteles
+    // Constructor que solicita los pasteles
     public function __construct($idPastel) {
         global $conexion;
         $sql = "SELECT * FROM pastel WHERE idPastel = $idPastel"; 
@@ -53,7 +53,6 @@ class BoxesPastel {
 
 }
 
-// Método estático para obtener todas las idPastel
 function getRegistros() {
     global $conexion;
     $idRegistros = array();
@@ -74,10 +73,10 @@ function getRegistros() {
     return $idRegistros;
 }
 
-// Obtener todas las idPastel
+// Obtener idPastel
 $idsPasteles = getRegistros();
 
-// Iterar sobre las idPastel y generar los cards
+// Iterar sobre las idPastel y para poder generar los cards
 foreach ($idsPasteles as $idPastel) {
     $boxesPastel = new BoxesPastel($idPastel);
     $cardHtml = $boxesPastel->generateCardHtml();
