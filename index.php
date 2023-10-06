@@ -23,13 +23,13 @@
 </nav>
     </header>
     <br>
-  <div>
+  <section class="fixCard">
             <?php
             include("./bd/bd.php");
             include("./vista/BoxesPastel.php");
             ?>
 
-  </div>
+  </section>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

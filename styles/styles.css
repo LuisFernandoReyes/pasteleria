@@ -27,3 +27,47 @@
     font-size: 18px;
     border-radius: 5px; 
 }
+.fixCard{
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 20px;
+}
+.fixCard img{
+  width: auto;
+  height: 200px;
+  margin: 0px;
+}
+
+.buttonPrecio{
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 5%;
+}
+.Card-boton {
+  margin-left: 15px;
+  line-height: 35px;
+  text-align: center;
+  font-family: Helvetica;
+  width: 150px;
+  background-color: #ea6a8f;
+  color: #eff5bf;
+  border-radius: 5px;
+  border: 1% solid #000000; 
+}
+.Card-boton:hover {
+  background-color: #d75323;
+  color: #ffffff;
+}
+.Card-precio{
+  margin: auto;
+  line-height: 35px;
+  text-align: center;
+  font-family: Helvetica;
+  width: 100px;
+  background-color: #96b6b3;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid transparent; 
+}
+

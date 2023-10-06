@@ -31,28 +31,24 @@ class BoxesPastel {
         }
     }
     
-    //Lenar el html que se mostrara en index
     public function generateCardHtml() {
-        $html = '<div class="card" style="width: 18rem;">';
-        $html .= '<img src="./img/'. $this->imagen . '" class="card-img-top">';
-        $html .= '<div class="card-body">';
-        $html .= '<h5 class="card-title">Pastel de ' . $this->tipoSabor . ' de tamaño ' . $this->tamañoPastel . '</h5>';
-        $html .= '<p class="card-text">' . $this->descripcion . '</p>';
-        $html .= '<div class="input-group mb-3">';
-        $html .= '<form action="./vista/compra.php" method="POST">';
-        $html .= '<input type="hidden" name="idPastel" value="' . $this->idPastel . '">';
-        $html .= '<input type="submit" value="Agregar al carrito">';
-        $html .= '</form>';
-        $html .= '<span class="input-group-text">Precio: $' . $this->precioPastel . '</span>';
-        $html .= '</div>';
-        $html .= '</div>';
-        $html .= '</div>';
+        $html = "<div class='card' style='width: 18rem; margin:10px'>";
+        $html .= "<img src='./img/{$this->imagen}' class='card-img-top'>";
+        $html .= "<div class='card-body'>";
+        $html .= "<h5 class='card-title'>Pastel de {$this->tipoSabor} de tamaño {$this->tamañoPastel}</h5>";
+        $html .= "<p class='card-text'>{$this->descripcion}</p>";
+        $html .= "</div>";
+        $html .= "<div class= 'buttonPrecio'>";
+        $html .= "<form action='./vista/compra.php' method='POST'>";
+        $html .= "<input type='hidden' name='idPastel' value='" . htmlspecialchars($this->idPastel, ENT_QUOTES, 'UTF-8') . "'>";
+        $html .= "<input type='submit' class='Card-boton' value='Agregar al carrito'>";
+        $html .= "</form>";
+        $html .= "<span class='Card-precio'> $" . number_format($this->precioPastel, 2) . "</span>";
+        $html .= "</div>";
+        $html .= "</div>";
         return $html;
     }
-    
-
 }
-
 function getRegistros() {
     global $conexion;
     $idRegistros = array();
