@@ -5,7 +5,7 @@ class BoxesPastel {
     private $idPastel;
     private $tipoSabor;
     private $precioPastel;
-    private $tamañoPastel;
+    private $tamanoPastel;
     private $imagen;
     private $descripcion;
 
@@ -20,7 +20,7 @@ class BoxesPastel {
                 $this->idPastel = $row['idPastel'];
                 $this->tipoSabor = $row['tipoSabor'];
                 $this->precioPastel = $row['precioPastel'];
-                $this->tamañoPastel = $row['tamañoPastel'];
+                $this->tamanoPastel = $row['tamanoPastel'];
                 $this->imagen = $row['imagen'];
                 $this->descripcion = $row['descripcion'];
             } else {
@@ -35,7 +35,7 @@ class BoxesPastel {
         $html = "<div class='card' style='width: 18rem; margin:10px'>";
         $html .= "<img src='./img/{$this->imagen}' class='card-img-top'>";
         $html .= "<div class='card-body'>";
-        $html .= "<h5 class='card-title'>Pastel de {$this->tipoSabor} de tamaño {$this->tamañoPastel}</h5>";
+        $html .= "<h5 class='card-title'>Pastel de {$this->tipoSabor} de tamaño {$this->tamanoPastel}</h5>";
         $html .= "<p class='card-text'>{$this->descripcion}</p>";
         $html .= "</div>";
         $html .= "<div class= 'buttonPrecio'>";

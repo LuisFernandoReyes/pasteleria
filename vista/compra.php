@@ -3,7 +3,7 @@ include("../bd/bd.php");
 
 $tipoSabor = "";
 $precioPastel = "";
-$tamañoPastel = "";
+$tamanoPastel = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['idPastel'])) {
@@ -61,7 +61,7 @@ function insertar($idPastel)
 
 function compra($idPastel)
 {
-    global $conexion, $tipoSabor, $precioPastel, $tamañoPastel;
+    global $conexion, $tipoSabor, $precioPastel, $tamanoPastel;
 
     $sql = "SELECT * FROM pastel WHERE idPastel = :idPastel";
     $stmt = $conexion->prepare($sql);
@@ -73,7 +73,7 @@ function compra($idPastel)
         if ($resultado) {
             $tipoSabor = $resultado['tipoSabor'];
             $precioPastel = $resultado['precioPastel'];
-            $tamañoPastel = $resultado['tamañoPastel'];
+            $tamanoPastel = $resultado['tamanoPastel'];
         } else {
             echo "No se encontró ningún pastel con el ID proporcionado.";
         }
@@ -128,7 +128,7 @@ function compra($idPastel)
                             <tbody class="table-group-divider">
                                 <tr class="table-primary">
                                     <td> <?php echo ("Pastel sabor " . $tipoSabor); ?></td>
-                                    <td> <?php echo ($tamañoPastel); ?></td>
+                                    <td> <?php echo ($tamanoPastel); ?></td>
                                     <td> <?php echo ($precioPastel); ?></td>
                                     <td>
                                         <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
