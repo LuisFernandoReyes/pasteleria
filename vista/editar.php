@@ -2,10 +2,7 @@
 include("../bd/bd.php");
 
 try {
-    // Consulta SQL para obtener todos los registros de la tabla "pastel"
     $sql = "SELECT * FROM pastel";
-
-    // Ejecutar la consulta y obtener un conjunto de resultados
     $resultado = $conexion->query($sql);
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
@@ -65,7 +62,7 @@ try {
                                     echo "<td>" . $fila['tamanoPastel'] . "</td>";
                                     echo "<td>" . $fila['imagen'] . "</td>";
                                     echo "<td>" . $fila['descripcion'] . "</td>";
-                                    echo "<td><a href='editar.php?id=" . $fila['idPastel'] . "'>Editar</a></td>";
+                                    echo "<td><a href='editRegistro.php?idPastel=" . $fila['idPastel'] . "'>Editar</a></td>";
                                     echo "<td><a href='eliminar.php?idPastel=" . $fila['idPastel'] . "' onclick='return confirm(\"¿Está seguro de eliminar este pastel?\");'>Eliminar</a></td>";
                                     echo "</tr>";
                                 }
