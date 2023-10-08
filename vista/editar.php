@@ -18,7 +18,7 @@ try {
     <title>Pastelería</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
@@ -39,7 +39,7 @@ try {
         <div class="row">
             <div class="col">
             </div>
-            <div class="card">
+            <div class="card" style="background-color: #ffb2c9;">
                 <div class="card-body">
                     <div class="table-responsive-sm">
                         <table class="table">
@@ -63,8 +63,8 @@ try {
                                     echo "<td>" . $fila['tamanoPastel'] . "</td>";
                                     echo "<td>" . $fila['imagen'] . "</td>";
                                     echo "<td>" . $fila['descripcion'] . "</td>";
-                                    echo "<td><a href='editRegistro.php?idPastel=" . $fila['idPastel'] . "'>Editar</a></td>";
-                                    echo "<td><a href='eliminar.php?idPastel=" . $fila['idPastel'] . "' onclick='return confirm(\"¿Está seguro de eliminar este pastel?\");'>Eliminar</a></td>";
+                                    echo "<td><a href='editRegistro.php?idPastel=" . $fila['idPastel'] . "' class='butonAG'>Editar</a></td>";
+                                    echo "<td><a href='eliminar.php?idPastel=" . $fila['idPastel'] . "' onclick='return confirm(\"¿Está seguro de eliminar este pastel?\");' class='butonGeneral'>Eliminar</a></td>";
                                     echo "</tr>";
                                 }
                                 ?>

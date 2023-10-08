@@ -79,12 +79,12 @@
   border: 1px solid transparent;
 }
 .butonGeneral{
-  line-height: 30px;
+  line-height: 35px;
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   display: inline-block;
   width: 100px;
-  background-color: #ea3a6c;
+  background-color: #ff0048;
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
@@ -104,10 +104,10 @@
 }
 
 .butonAG:hover {
-  background-color: #a90959; /* Cambia el color de fondo en el hover (opcional) */
-  color: #fff; /* Mantiene el color de texto en el hover */
+  background-color: #a90959; 
+  color: #fff;
 }
 .butonGeneral:hover {
-  background-color: #a90959; /* Cambia el color de fondo en el hover (opcional) */
-  color: #fff; /* Mantiene el color de texto en el hover */
+  background-color: #a90959; 
+  color: #fff;
 }

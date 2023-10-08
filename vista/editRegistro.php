@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Editar Pastel</title>
 </head>
 
-<body>
+<body style="background-color: #DCE7EF">
     <h1>Editar Pastel</h1>
     <form method="POST">
         <label for="tipoSabor">Sabor:</label>

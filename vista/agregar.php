@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submit'])) {
             VALUES ('$tipoSabor', '$precioPastel', '$tamanoPastel', '$imagen', '$descripcion')";
 
     if ($conexion->query($sql) === TRUE) {
-        echo "Registro insertado correctamente.";
+        
     } else {
 
     }
@@ -42,7 +42,7 @@ $_SESSION['form_submitted'] = true;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
-<body>
+<body style="background-color: #ffb2c9">
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
             <div class="container-fluid">
