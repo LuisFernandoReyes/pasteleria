@@ -78,3 +78,36 @@
   border-radius: 5px;
   border: 1px solid transparent;
 }
+.butonGeneral{
+  line-height: 30px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  width: 100px;
+  background-color: #ea3a6c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.butonAG {
+  align-items: center;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100px;
+  background-color: #ea3a6c;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #ea3a6c;
+  display: inline-block; 
+  padding: 5px 10px; 
+}
+
+.butonAG:hover {
+  background-color: #a90959; /* Cambia el color de fondo en el hover (opcional) */
+  color: #fff; /* Mantiene el color de texto en el hover */
+}
+.butonGeneral:hover {
+  background-color: #a90959; /* Cambia el color de fondo en el hover (opcional) */
+  color: #fff; /* Mantiene el color de texto en el hover */
+}

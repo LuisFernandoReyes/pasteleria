@@ -1,6 +1,6 @@
 <?php
 ob_start();
-include("../bd/bd.php");
+
 
 class BoxesPastel {
     private $idPastel;

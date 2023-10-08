@@ -50,7 +50,7 @@ function insertar($idPastel, $conexion)
             if (mysqli_stmt_execute($stmtInsertar)) {
                 echo "Se agregó el pastel al carrito.";
             } else {
-                echo "Error al agregar el pastel al carrito.";
+
             }
         }
     } else {
@@ -91,7 +91,7 @@ function compra($idPastel, $conexion)
     <title>Pastelería</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
@@ -103,7 +103,7 @@ function compra($idPastel, $conexion)
                 <a class="navbar-brand" href="../vista/agregar.php">Agregar</a>
                 <a class="navbar-brand" href="./editar.php">Editar/Eliminar</a>
                 <a class="navbar-brand" href="./carrito.php">
-                    <img src="../icons/carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
+                    <img src="../carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
                 </a>
             </div>
         </nav>
@@ -134,10 +134,10 @@ function compra($idPastel, $conexion)
                                     <td>
                                         <form action="" method="POST">
                                             <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
-                                            <button type="submit" name="agregarCarrito">Agregar al Carrito</button>
+                                            <button type="submit" name="agregarCarrito" class="butonAG">Agregar al Carrito</button>
                                         </form>
                                     </td>
-                                    <td> <a href="../index.php">Cancelar</a></td>
+                                    <td> <a href="../index.php" class="butonGeneral" >Cancelar</a></td>
                                 </tr>
                             </tbody>
                             <tfoot>

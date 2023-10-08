@@ -5,7 +5,7 @@
   <title>Pastelería</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="stylesheet" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
@@ -18,7 +18,7 @@
         <a class="navbar-brand" href="./vista/agregar.php">Agregar</a>
         <a class="navbar-brand" href="./vista/editar.php">Editar/Eliminar</a>
         <a class="navbar-brand" href="./vista/carrito.php">
-          <img src="./icons/carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
+          <img src="carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
         </a>
       </div>
     </nav>

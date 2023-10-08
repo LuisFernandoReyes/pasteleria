@@ -30,7 +30,7 @@ try {
                 <a class="navbar-brand" href="../vista/agregar.php">Agregar</a>
                 <a class="navbar-brand" href="./editar.php">Editar/Eliminar</a>
                 <a class="navbar-brand" href="./carrito.php">
-                    <img src="../icons/carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
+                    <img src="../carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
                 </a>
             </div>
         </nav>
