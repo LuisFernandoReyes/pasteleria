@@ -1,10 +1,11 @@
 <?php
+ob_start();
 include("../bd/bd.php");
 
 try {
     $sql = "SELECT * FROM pastel";
-    $resultado = $conexion->query($sql);
-} catch (PDOException $e) {
+    $resultado = mysqli_query($conexion, $sql);
+} catch (Exception $e) {
     echo "Error: " . $e->getMessage();
 }
 
@@ -55,7 +56,7 @@ try {
                             </thead>
                             <tbody class="table-group-divider">
                                 <?php
-                                while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                                while ($fila = mysqli_fetch_assoc($resultado)) {
                                     echo "<tr>";
                                     echo "<td>" . $fila['tipoSabor'] . "</td>";
                                     echo "<td>" . $fila['precioPastel'] . "</td>";

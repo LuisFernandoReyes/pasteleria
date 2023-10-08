@@ -1,12 +1,9 @@
-<?php
-$server = "localhost";
-$baseDatos = "pasteleria";
-$user = "root";
-$pass = "";
+<?
+//Conexion
+$conexion = mysqli_connect("bd:3306", "root", "bd","pasteleria");
 
-try {
-    $conexion = new PDO("mysql:host=$server;dbname=$baseDatos", $user, $pass);
-} catch (Exception $error) {
-    echo $error->getMessage();
+if(!$conexion){
+    die("Conexion fallida: " .mysqli_connect_error());
 }
+// echo "Connexion exitosa";
 ?>

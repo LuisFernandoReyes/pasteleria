@@ -1,5 +1,6 @@
 <?php
-include("./bd/bd.php");
+ob_start();
+include("../bd/bd.php");
 
 class BoxesPastel {
     private $idPastel;
@@ -10,13 +11,12 @@ class BoxesPastel {
     private $descripcion;
 
     // Constructor que solicita los pasteles
-    public function __construct($idPastel) {
-        global $conexion;
-        $sql = "SELECT * FROM pastel WHERE idPastel = $idPastel"; 
-        $result = $conexion->query($sql);
+    public function __construct($idPastel, $conexion) {
+        $sql = "SELECT * FROM pastel WHERE idPastel = $idPastel";
+        $result = mysqli_query($conexion, $sql);
         if ($result) {
-            if ($result->rowCount() > 0) {
-                $row = $result->fetch(PDO::FETCH_ASSOC); 
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
                 $this->idPastel = $row['idPastel'];
                 $this->tipoSabor = $row['tipoSabor'];
                 $this->precioPastel = $row['precioPastel'];
@@ -26,11 +26,12 @@ class BoxesPastel {
             } else {
                 echo "No se encontraron registros en la tabla 'pastel'.";
             }
+            mysqli_free_result($result);
         } else {
-            echo "Error en la consulta: " . $conexion->errorInfo()[2];
+            echo "Error en la consulta: " . mysqli_error($conexion);
         }
     }
-    
+
     public function generateCardHtml() {
         $html = "<div class='card' style='width: 18rem; margin:10px'>";
         $html .= "<img src='./img/{$this->imagen}' class='card-img-top'>";
@@ -49,33 +50,35 @@ class BoxesPastel {
         return $html;
     }
 }
-function getRegistros() {
-    global $conexion;
+
+function getRegistros($conexion) {
     $idRegistros = array();
     $sql = "SELECT idPastel FROM pastel";
-    $result = $conexion->query($sql);
+    $result = mysqli_query($conexion, $sql);
     if ($result) {
-        if ($result->rowCount() > 0) {
-            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        if (mysqli_num_rows($result) > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
                 $idRegistros[] = $row['idPastel'];
             }
         } else {
             echo "No se encontraron registros en la tabla 'pastel'.";
         }
+        mysqli_free_result($result);
     } else {
-        echo "Error en la consulta: " . $conexion->errorInfo()[2];
+        echo "Error en la consulta: " . mysqli_error($conexion);
     }
 
     return $idRegistros;
 }
 
 // Obtener idPastel
-$idsPasteles = getRegistros();
+$idsPasteles = getRegistros($conexion);
 
 // Iterar sobre las idPastel y para poder generar los cards
 foreach ($idsPasteles as $idPastel) {
-    $boxesPastel = new BoxesPastel($idPastel);
+    $boxesPastel = new BoxesPastel($idPastel, $conexion);
     $cardHtml = $boxesPastel->generateCardHtml();
     echo $cardHtml;
 }
+
 ?>

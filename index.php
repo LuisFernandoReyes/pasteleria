@@ -26,6 +26,7 @@
   <br>
   <section class="fixCard">
     <?php
+    ob_start();
     include("./bd/bd.php");
     include("./vista/BoxesPastel.php");
     ?>

@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include("../bd/bd.php");
 
 $tipoSabor = "";
@@ -8,46 +9,45 @@ $tamanoPastel = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['idPastel'])) {
         $idPastel = $_POST['idPastel'];
-        compra($idPastel);
+        compra($idPastel, $conexion);
     }
     if (isset($_POST['idPastel'])) {
         $idPastel = $_POST['idPastel'];
-        insertar($idPastel);
+        insertar($idPastel, $conexion);
     }
 }
-function insertar($idPastel)
+
+function insertar($idPastel, $conexion)
 {
-    global $conexion;
-
     // Verifica si el pastel ya existe en el carrito
-    $sqlExistencia = "SELECT * FROM carrito WHERE idPastel = :idPastel";
-    $stmtExistencia = $conexion->prepare($sqlExistencia);
-    $stmtExistencia->bindParam(':idPastel', $idPastel);
-    $stmtExistencia->execute();
+    $sqlExistencia = "SELECT * FROM carrito WHERE idPastel = ?";
+    $stmtExistencia = mysqli_prepare($conexion, $sqlExistencia);
+    mysqli_stmt_bind_param($stmtExistencia, "i", $idPastel);
+    mysqli_stmt_execute($stmtExistencia);
+    $resultadoExistencia = mysqli_stmt_get_result($stmtExistencia);
 
-    if ($stmtExistencia) {
-        $resultadoExistencia = $stmtExistencia->fetch(PDO::FETCH_ASSOC);
+    if ($resultadoExistencia) {
+        $rowExistencia = mysqli_fetch_assoc($resultadoExistencia);
 
-        if ($resultadoExistencia) {
-            // Siexiste pastel, actualizamos la cantidad
-            $cantidadActual = $resultadoExistencia['cantidadPastel'];
+        if ($rowExistencia) {
+            // Si existe el pastel, actualizamos la cantidad
+            $cantidadActual = $rowExistencia['cantidadPastel'];
             $cantidadNueva = $cantidadActual + 1;
 
-            $sqlActualizar = "UPDATE carrito SET cantidadPastel = :cantidadNueva WHERE idPastel = :idPastel";
-            $stmtActualizar = $conexion->prepare($sqlActualizar);
-            $stmtActualizar->bindParam(':cantidadNueva', $cantidadNueva);
-            $stmtActualizar->bindParam(':idPastel', $idPastel);
-            if ($stmtActualizar->execute()) {
+            $sqlActualizar = "UPDATE carrito SET cantidadPastel = ? WHERE idPastel = ?";
+            $stmtActualizar = mysqli_prepare($conexion, $sqlActualizar);
+            mysqli_stmt_bind_param($stmtActualizar, "ii", $cantidadNueva, $idPastel);
+            if (mysqli_stmt_execute($stmtActualizar)) {
                 // echo "Se actualizó la cantidad del pastel en el carrito.";
             } else {
                 echo "Error al actualizar la cantidad del pastel en el carrito.";
             }
         } else {
-            // Si no esta el pastel, insertarlo con cantidad de 1
-            $sqlInsertar = "INSERT INTO carrito (idPastel, cantidadPastel) VALUES (:idPastel, 1)";
-            $stmtInsertar = $conexion->prepare($sqlInsertar);
-            $stmtInsertar->bindParam(':idPastel', $idPastel);
-            if ($stmtInsertar->execute()) {
+            // Si no está el pastel, insertarlo con cantidad de 1
+            $sqlInsertar = "INSERT INTO carrito (idPastel, cantidadPastel) VALUES (?, 1)";
+            $stmtInsertar = mysqli_prepare($conexion, $sqlInsertar);
+            mysqli_stmt_bind_param($stmtInsertar, "i", $idPastel);
+            if (mysqli_stmt_execute($stmtInsertar)) {
                 echo "Se agregó el pastel al carrito.";
             } else {
                 echo "Error al agregar el pastel al carrito.";
@@ -58,22 +58,22 @@ function insertar($idPastel)
     }
 }
 
-
-function compra($idPastel)
+function compra($idPastel, $conexion)
 {
-    global $conexion, $tipoSabor, $precioPastel, $tamanoPastel;
+    global $tipoSabor, $precioPastel, $tamanoPastel;
 
-    $sql = "SELECT * FROM pastel WHERE idPastel = :idPastel";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':idPastel', $idPastel);
-    $stmt->execute();
+    $sql = "SELECT * FROM pastel WHERE idPastel = ?";
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $idPastel);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
 
-    if ($stmt) {
-        $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
-        if ($resultado) {
-            $tipoSabor = $resultado['tipoSabor'];
-            $precioPastel = $resultado['precioPastel'];
-            $tamanoPastel = $resultado['tamanoPastel'];
+    if ($resultado) {
+        $row = mysqli_fetch_assoc($resultado);
+        if ($row) {
+            $tipoSabor = $row['tipoSabor'];
+            $precioPastel = $row['precioPastel'];
+            $tamanoPastel = $row['tamanoPastel'];
         } else {
             echo "No se encontró ningún pastel con el ID proporcionado.";
         }
@@ -81,6 +81,7 @@ function compra($idPastel)
         echo "Error al ejecutar la consulta.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -131,10 +132,12 @@ function compra($idPastel)
                                     <td> <?php echo ($tamanoPastel); ?></td>
                                     <td> <?php echo ($precioPastel); ?></td>
                                     <td>
-                                        <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
-                                        <button type="submit" name="agregarCarrito">Agregar al Carrito</button>
+                                        <form action="" method="POST">
+                                            <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
+                                            <button type="submit" name="agregarCarrito">Agregar al Carrito</button>
+                                        </form>
                                     </td>
-                                    <td> <button href=../index.php>Cancelar</button></td>
+                                    <td> <a href="../index.php">Cancelar</a></td>
                                 </tr>
                             </tbody>
                             <tfoot>
@@ -147,7 +150,4 @@ function compra($idPastel)
     </section>
     <br>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity

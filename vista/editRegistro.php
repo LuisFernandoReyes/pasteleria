@@ -1,15 +1,21 @@
 <?php
+ob_start();
 include("../bd/bd.php");
 
 if (isset($_GET['idPastel']) && is_numeric($_GET['idPastel'])) {
     $idPastel = $_GET['idPastel'];
-    $sql = "SELECT * FROM pastel WHERE idPastel = :idPastel";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':idPastel', $idPastel, PDO::PARAM_INT);
-    $stmt->execute();
+    $sql = "SELECT * FROM pastel WHERE idPastel = ?";
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $idPastel);
+    mysqli_stmt_execute($stmt);
+    $resultado = mysqli_stmt_get_result($stmt);
 
-    $pastel = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$resultado) {
+        echo "Pastel no encontrado.";
+        exit;
+    }
 
+    $pastel = mysqli_fetch_assoc($resultado);
     if (!$pastel) {
         echo "Pastel no encontrado.";
         exit;
@@ -26,16 +32,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nuevaImagen = $_POST['imagen'];
     $nuevaDescripcion = $_POST['descripcion'];
 
-    $sql = "UPDATE pastel SET tipoSabor = :tipoSabor, precioPastel = :precioPastel, tamanoPastel = :tamanoPastel, imagen = :imagen, descripcion = :descripcion WHERE idPastel = :idPastel";
-    $stmt = $conexion->prepare($sql);
-    $stmt->bindParam(':tipoSabor', $nuevoTipoSabor);
-    $stmt->bindParam(':precioPastel', $nuevoPrecio);
-    $stmt->bindParam(':tamanoPastel', $nuevoTamano);
-    $stmt->bindParam(':imagen', $nuevaImagen);
-    $stmt->bindParam(':descripcion', $nuevaDescripcion);
-    $stmt->bindParam(':idPastel', $idPastel, PDO::PARAM_INT);
+    $sql = "UPDATE pastel SET tipoSabor = ?, precioPastel = ?, tamanoPastel = ?, imagen = ?, descripcion = ? WHERE idPastel = ?";
+    $stmt = mysqli_prepare($conexion, $sql);
+    mysqli_stmt_bind_param($stmt, "sdsssi", $nuevoTipoSabor, $nuevoPrecio, $nuevoTamano, $nuevaImagen, $nuevaDescripcion, $idPastel);
 
-    if ($stmt->execute()) {
+    if (mysqli_stmt_execute($stmt)) {
         echo "El pastel ha sido actualizado correctamente.";
     } else {
         echo "Error al actualizar el pastel.";
