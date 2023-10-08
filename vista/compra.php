@@ -15,7 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         insertar($idPastel);
     }
 }
-function insertar($idPastel) {
+function insertar($idPastel)
+{
     global $conexion;
 
     // Verifica si el pastel ya existe en el carrito
@@ -58,7 +59,8 @@ function insertar($idPastel) {
 }
 
 
-function compra($idPastel) {
+function compra($idPastel)
+{
     global $conexion, $tipoSabor, $precioPastel, $tamañoPastel;
 
     $sql = "SELECT * FROM pastel WHERE idPastel = :idPastel";
@@ -97,6 +99,8 @@ function compra($idPastel) {
         <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../index.php">Pastelería</a>
+                <a class="navbar-brand" href="../vista/agregar.php">Agregar</a>
+                <a class="navbar-brand" href="./editar.php">Editar/Eliminar</a>
                 <a class="navbar-brand" href="./carrito.php">
                     <img src="../icons/carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
                 </a>
@@ -123,13 +127,13 @@ function compra($idPastel) {
                             </thead>
                             <tbody class="table-group-divider">
                                 <tr class="table-primary">
-                                    <td> <?php echo("Pastel sabor ".$tipoSabor); ?></td>
-                                    <td> <?php echo($tamañoPastel); ?></td>
-                                    <td> <?php echo($precioPastel); ?></td>
-                                    <td> 
-                                    <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
-                                            <button type="submit" name="agregarCarrito">Agregar al Carrito</button>
-                                </td>
+                                    <td> <?php echo ("Pastel sabor " . $tipoSabor); ?></td>
+                                    <td> <?php echo ($tamañoPastel); ?></td>
+                                    <td> <?php echo ($precioPastel); ?></td>
+                                    <td>
+                                        <input type="hidden" name="idPastel" value="<?php echo $idPastel; ?>">
+                                        <button type="submit" name="agregarCarrito">Agregar al Carrito</button>
+                                    </td>
                                     <td> <button href=../index.php>Cancelar</button></td>
                                 </tr>
                             </tbody>

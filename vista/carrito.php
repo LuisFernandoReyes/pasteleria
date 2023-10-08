@@ -14,13 +14,14 @@
         <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
             <div class="container-fluid">
                 <a class="navbar-brand" href="../index.php">Pastelería</a>
+                <a class="navbar-brand" href="../vista/agregar.php">Agregar</a>
+                <a class="navbar-brand" href="./editar.php">Editar/Eliminar</a>
                 <a class="navbar-brand" href="./carrito.php">
                     <img src="../icons/carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
                 </a>
             </div>
         </nav>
     </header>
-    <br>
     <section>
         <div class="row">
             <div class="col">

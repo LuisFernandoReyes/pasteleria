@@ -1,49 +1,55 @@
-.pago{
-    display: flex;
-    flex-wrap: wrap;
+.pago {
+  display: flex;
+  flex-wrap: wrap;
 }
+
 .primer-boton {
-    line-height: 50px; 
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    display: inline-block;
-    width: 150px;
-    background-color: #ea3a6c;
-    color: #fff;
-    text-decoration: none;
-  }
-  .primer-boton:hover {
-    background-color: #FAD242;
-    color: white;
-  }
-  .total-box {
-    width: 300px;
-    height: 50px;
-    background-color: #E8B0A3;
-    color: white;
-    align-items: left;
-    text-align: center;
-    line-height: 50px;
-    font-size: 18px;
-    border-radius: 5px; 
+  line-height: 50px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  display: inline-block;
+  width: 150px;
+  background-color: #ea3a6c;
+  color: #fff;
+  text-decoration: none;
 }
-.fixCard{
+
+.primer-boton:hover {
+  background-color: #FAD242;
+  color: white;
+}
+
+.total-box {
+  width: 300px;
+  height: 50px;
+  background-color: #E8B0A3;
+  color: white;
+  align-items: left;
+  text-align: center;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.fixCard {
   display: flex;
   flex-wrap: wrap;
   margin-left: 20px;
 }
-.fixCard img{
+
+.fixCard img {
   width: auto;
   height: 200px;
   margin: 0px;
 }
 
-.buttonPrecio{
+.buttonPrecio {
   display: flex;
   align-items: center;
   text-align: center;
   padding-bottom: 5%;
 }
+
 .Card-boton {
   margin-left: 15px;
   line-height: 35px;
@@ -53,13 +59,15 @@
   background-color: #ea6a8f;
   color: #eff5bf;
   border-radius: 5px;
-  border: 1% solid #000000; 
+  border: 1% solid #000000;
 }
+
 .Card-boton:hover {
   background-color: #d75323;
   color: #ffffff;
 }
-.Card-precio{
+
+.Card-precio {
   margin: auto;
   line-height: 35px;
   text-align: center;
@@ -68,6 +76,5 @@
   background-color: #96b6b3;
   color: white;
   border-radius: 5px;
-  border: 1px solid transparent; 
+  border: 1px solid transparent;
 }
-
