@@ -1,16 +1,30 @@
-<!doctype html>
+<?php
+include("../bd/bd.php");
+
+try {
+    // Consulta SQL para obtener todos los registros de la tabla "pastel"
+    $sql = "SELECT * FROM pastel";
+
+    // Ejecutar la consulta y obtener un conjunto de resultados
+    $resultado = $conexion->query($sql);
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Pastelería</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="stylesheet" href="../styles/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-
 </head>
 
-<body>
+<body style="background-color: #DCE7EF">
     <header>
         <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
             <div class="container-fluid">
@@ -23,16 +37,55 @@
             </div>
         </nav>
     </header>
-    <main>
-
-    </main>
-    <footer>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-    </script>
+    <section>
+        <div class="row">
+            <div class="col">
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive-sm">
+                        <table class="table">
+                            <thead class="table">
+                                <tr>
+                                    <th>Sabor</th>
+                                    <th>Precio</th>
+                                    <th>Tamaño</th>
+                                    <th>Imagen</th>
+                                    <th>Descripción</th>
+                                    <th>Editar compra</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <?php
+                                while ($fila = $resultado->fetch(PDO::FETCH_ASSOC)) {
+                                    echo "<tr>";
+                                    echo "<td>" . $fila['tipoSabor'] . "</td>";
+                                    echo "<td>" . $fila['precioPastel'] . "</td>";
+                                    echo "<td>" . $fila['tamanoPastel'] . "</td>";
+                                    echo "<td>" . $fila['imagen'] . "</td>";
+                                    echo "<td>" . $fila['descripcion'] . "</td>";
+                                    echo "<td><a href='editar.php?id=" . $fila['idPastel'] . "'>Editar</a></td>";
+                                    echo "<td><a href='eliminar.php?idPastel=" . $fila['idPastel'] . "' onclick='return confirm(\"¿Está seguro de eliminar este pastel?\");'>Eliminar</a></td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                            </tbody>
+                            <tfoot>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
 </body>
 
 </html>
+<?php
+if (!empty($mensaje)) {
+    echo '<div class="alert alert-success">' . $mensaje . '</div>';
+}
+?>
