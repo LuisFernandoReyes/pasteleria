@@ -11,18 +11,18 @@
 
 
 <body style="background-color: #DCE7EF">
-  <header>
-    <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="./index.php">Pastelería</a>
-        <a class="navbar-brand" href="./vista/agregar.php">Agregar</a>
+<header>
+  <nav class="navbar navbar-expand-lg" style="background-color: #E8B0A3;">
+    <div class="container">
+      <a class="navbar-brand" href="./index.php">Pastelería</a>
+      <div class="ml-auto">
+        <a class="navbar-brand" href="./vista/agregar.php">Agregar nuevo pastel</a>
         <a class="navbar-brand" href="./vista/editar.php">Editar/Eliminar</a>
-        <a class="navbar-brand" href="./vista/carrito.php">
-          <img src="carrito.png" alt="Carrito de compras" style="max-width: 30px; height: auto;">
-        </a>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
+
   <br>
   <section class="fixCard">
     <?php
